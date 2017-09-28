@@ -1,5 +1,4 @@
- /*module.exports =*/ 
-function multiply(first, second) 
+ module.exports = function multiply(first, second) 
 {
     let arrayFirst = first.split('').reverse();
     let arraySecond = second.split('').reverse();    
@@ -9,12 +8,15 @@ function multiply(first, second)
     {
         result[i] = 0;
     }
-    
+
+    let decade = 0;
+    let decadeIfResMoreTen = 0;
 
     for(let i = 0; i < arraySecond.length; ++i)
     { 
-        let decade = 0;
-        let decadeIfResMoreTen = 0;       
+        decade = 0;
+        decadeIfResMoreTen = 0;
+
         for(let j = 0; j < arrayFirst.length; ++j)
         {            
             result[i+j] += (((arrayFirst[j] * arraySecond[i]) % 10) + decade);
@@ -34,12 +36,9 @@ function multiply(first, second)
             
             if((j + 1) == arrayFirst.length)
             {
-                result[i+j+1] = decade + decadeIfResMoreTen
-            }
-            console.log(result);
-            console.log(decade);
-        }
-    
+                result[i+j+1] = decade + decadeIfResMoreTen;
+            }            
+        }    
     }
 
     result.reverse();
@@ -50,7 +49,3 @@ function multiply(first, second)
     return result.join('');
                
 }
-
-multiply('5', '10');
-
-
