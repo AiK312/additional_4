@@ -13,37 +13,44 @@ function multiply(first, second)
 
     for(let i = 0; i < arraySecond.length; ++i)
     { 
-        let temp = 0;       
+        let decade = 0;
+        let decadeIfResMoreTen = 0;       
         for(let j = 0; j < arrayFirst.length; ++j)
         {            
-            result[i+j] += (((arrayFirst[j] * arraySecond[i]) % 10) + temp);
+            result[i+j] += (((arrayFirst[j] * arraySecond[i]) % 10) + decade);
 
             if(result[i+j] >= 10)
             {
-                result[i+j] %= 10;
-                temp = Math.floor(result[i+j] / 10)
+                let temp = result[i+j];
+                result[i+j] = (result[i+j] % 10) + decadeIfResMoreTen;                
+                decadeIfResMoreTen = Math.floor(temp / 10);
             }
             else
             {
-                temp = 0;
+                decade = 0;
             }
 
-            temp = Math.floor((arrayFirst[j] * arraySecond[i]) / 10);            
+            decade = Math.floor((arrayFirst[j] * arraySecond[i]) / 10);   
             
-
             if((j + 1) == arrayFirst.length)
             {
-                result[i+j+1] = temp;
+                result[i+j+1] = decade + decadeIfResMoreTen
             }
             console.log(result);
+            console.log(decade);
         }
     
     }
 
-
-           
+    result.reverse();
+    if(result[0] == 0)
+    {
+        result.shift();
+    }
+    return result.join('');
+               
 }
 
-multiply('999', '87');
+multiply('5', '10');
 
 
