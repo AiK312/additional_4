@@ -26,7 +26,7 @@ module.exports = function multiply(first, second)
             	if(result[i+j] >= 10)
             	{
             		result[i+j] = result[i+j] % 10;
-            		decade = Math.floor((arrayFirst[j] * arraySecond[i] + decade) / 10 + 1);
+            		decade += 1;
             	} 
             	
             //	alert(result[i+j] + "..... " +decade);
@@ -39,7 +39,7 @@ module.exports = function multiply(first, second)
            
             
             //alert(i+j + "..... " + result + "..... "+ decade +
-            //"..... " + decadeIfResMoreTen);     
+           // "..... " + decadeIfResMoreTen);     
            // alert('\t' + decade);      
         }    
         
@@ -52,10 +52,4 @@ module.exports = function multiply(first, second)
     }
     return result.join('');
                
-}
-
-
-
-
-
-
+} 
