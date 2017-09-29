@@ -18,27 +18,34 @@
         decadeIfResMoreTen = 0;
 
         for(let j = 0; j < arrayFirst.length; ++j)
-        {            
-            result[i+j] += (((arrayFirst[j] * arraySecond[i]) % 10) + decade);
+        {  
+                                           
+
+            result[i+j] += ((arrayFirst[j] * arraySecond[i]) % 10) + decade 
+            + decadeIfResMoreTen;
 
             if(result[i+j] >= 10)
             {
                 let temp = result[i+j];
-                result[i+j] = (result[i+j] % 10) + decadeIfResMoreTen;                
+                result[i+j] = result[i+j] % 10;
                 decadeIfResMoreTen = Math.floor(temp / 10);
+                console.log(">10");
             }
-            else
-            {
-                decade = 0;
+            
+            decade = Math.floor(((arrayFirst[j] * arraySecond[i]) + decade 
+            + decadeIfResMoreTen) / 10);
+                  
+            if((j+1) == arrayFirst.length)
+            {                
+                result[i+j+1] = decade;
             }
 
-            decade = Math.floor((arrayFirst[j] * arraySecond[i]) / 10);   
+           
             
-            if((j + 1) == arrayFirst.length)
-            {
-                result[i+j+1] = decade + decadeIfResMoreTen;
-            }            
+            console.log(i+j + '\t' + result);     
+            console.log('\t' + decade);      
         }    
+        
     }
 
     result.reverse();
@@ -49,3 +56,7 @@
     return result.join('');
                
 }
+
+console.log(multiply('586', '596'));
+
+
