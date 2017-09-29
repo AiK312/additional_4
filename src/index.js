@@ -54,7 +54,7 @@ module.exports = function multiply(first, second)
                
 }
 
-alert(multiply('329568934658432659586', '58379426534596'));
+
 
 
 
