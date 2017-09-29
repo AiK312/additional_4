@@ -1,16 +1,16 @@
- module.exports = function multiply(first, second) 
+module.exports = function multiply(first, second) 
 {
     let arrayFirst = first.split('').reverse();
     let arraySecond = second.split('').reverse();    
 
     let result = [];
+    let decade = 0;
+    let decadeIfResMoreTen = 0;
+    
     for(let i = 0; i<arrayFirst.length+arraySecond.length; i++)
     {
         result[i] = 0;
     }
-
-    let decade = 0;
-    let decadeIfResMoreTen = 0;
 
     for(let i = 0; i < arraySecond.length; ++i)
     { 
@@ -19,22 +19,18 @@
 
         for(let j = 0; j < arrayFirst.length; ++j)
         {  
-                                           
-
-            result[i+j] += ((arrayFirst[j] * arraySecond[i]) % 10) + decade 
-            + decadeIfResMoreTen;
-
-            if(result[i+j] >= 10)
-            {
-                let temp = result[i+j];
-                result[i+j] = result[i+j] % 10;
-                decadeIfResMoreTen = Math.floor(temp / 10);
-                console.log(">10");
-            }
+        	
+        	  result[i+j] += ((arrayFirst[j] * arraySecond[i] + decade) % 10);
+            	decade = Math.floor((arrayFirst[j] * arraySecond[i] + decade) / 10);
+            	
+            	if(result[i+j] >= 10)
+            	{
+            		result[i+j] = result[i+j] % 10;
+            		decade = Math.floor((arrayFirst[j] * arraySecond[i] + decade) / 10 + 1);
+            	} 
+            	
+            //	alert(result[i+j] + "..... " +decade);
             
-            decade = Math.floor(((arrayFirst[j] * arraySecond[i]) + decade 
-            + decadeIfResMoreTen) / 10);
-                  
             if((j+1) == arrayFirst.length)
             {                
                 result[i+j+1] = decade;
@@ -42,8 +38,9 @@
 
            
             
-            console.log(i+j + '\t' + result);     
-            console.log('\t' + decade);      
+            //alert(i+j + "..... " + result + "..... "+ decade +
+            //"..... " + decadeIfResMoreTen);     
+           // alert('\t' + decade);      
         }    
         
     }
@@ -57,6 +54,8 @@
                
 }
 
-console.log(multiply('586', '596'));
+alert(multiply('329568934658432659586', '58379426534596'));
+
+
 
 
